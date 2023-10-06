@@ -6,7 +6,7 @@ const screen = new LcdScreen(max_chars);
 
 var args = process.argv[2];
 
-while(!args || isNaN(Number(args))){
+if(!args || isNaN(Number(args))){
 	throw "Please provide a valid number to be printed. Usage : npm start -- <number>";
 }
 
