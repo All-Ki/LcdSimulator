@@ -8,6 +8,6 @@ Clone the repository then run
 
 and then use it this way to print 100 :
 
-``` npm start -- 100``
+``` npm start -- 100```
 
 Please note that it only supports numbers, trying to print anything else will fail.
