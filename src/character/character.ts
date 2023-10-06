@@ -1,33 +1,53 @@
 
+/**
+ * Internal class representing a character with specific line patterns.
+ */
 
-export class Character {
-	constructor(public key : string , public first_line : string, public second_line : string, public third_line : string) {
-		if(key.length !== 1){
-			throw "key should be 1 character long";
-		}
-		if(first_line.length !== 3){
-			throw "first_line should be 3 characters long";
-		}
-		if(second_line.length !== 3){
-			throw "second_line should be 3 characters long";
-		}
-		if(third_line.length !== 3){
-			throw "third_line should be 3 characters long";
-		}
 
-	}
+export const E_FORBIDDEN_CHARACTER = "Character does not exist";
+export const E_BAD_SEGMENTS = "Segments should contain only spaces, hyphens, and underscores and be exactly 3 characters long";
+export const E_INVALID_KEY = "Key should be 1 character long";
+class Character {
+    /**
+     * Constructor for the Character class.
+     * @param key - The unique key of the character (1 character long).
+     * @param top_segment - The top segment pattern (3 characters long).
+     * @param middle_segment - The middle segment pattern (3 characters long).
+     * @param bottom_segment - The bottom segment pattern (3 characters long).
+     * @throws Throws errors if input parameters do not meet specified criteria.
+     */
+    constructor(public key: string, public top_segment: string, public middle_segment: string, public bottom_segment: string) {
+        // Validate the key length
+        if (key.length !== 1) {
+            throw E_INVALID_KEY;
+        }
+
+        // Validate segment lengths
+        if (top_segment.length !== 3 || middle_segment.length !== 3 || bottom_segment.length !== 3) {
+            throw E_BAD_SEGMENTS;
+        }
+
+        // Regular expression for valid line characters (spaces, hyphens, and underscores)
+        const valid_line_chars_regexp = /^[ |_-]+$/;
+
+        // Validate segment patterns using the regular expression
+        if (
+            !valid_line_chars_regexp.test(top_segment) ||
+            !valid_line_chars_regexp.test(middle_segment) ||
+            !valid_line_chars_regexp.test(bottom_segment)
+        ) {
+            throw E_BAD_SEGMENTS;
+        }
+    }
 }
-
-
-
 const characters = new Map<string, Character>();
 
-export function set_character (key : string, first_line : string, second_line : string, third_line : string) {
-	characters.set(key, new Character(key, first_line, second_line, third_line));
+export function set_character (key : string, top_segment : string, middle_segment : string, bottom_segment : string) {
+	characters.set(key, new Character(key, top_segment, middle_segment, bottom_segment));
 }
 export function get_character(key : string) {
 	if(!characters.has(key)){
-		throw "ERROR : Character not registered";
+		throw E_FORBIDDEN_CHARACTER;
 	}
 	return characters.get(key);
 }
