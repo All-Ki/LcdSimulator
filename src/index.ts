@@ -12,7 +12,16 @@ if(!args || isNaN(Number(args))){
 	throw "Please provide a valid number to be printed. Usage : npm start -- <number>";
 }
 
-
+//example  on how to register a character
+/**
+ * import {set_character} from "./character/character";
+	set_character("0", 	" _ ",
+						"| |",
+						"|_|"),
+ * 
+ * 
+ * 
+ */
 
 //everythiing is okay, print
 screen.set_content(args);
