@@ -41,10 +41,25 @@ class Character {
     }
 }
 const characters = new Map<string, Character>();
-
+/**
+ * Sets a character with the specified key and segments.
+ *
+ * @param {string} key - The key of the character.
+ * @param {string} top_segment - The top segment of the character.
+ * @param {string} middle_segment - The middle segment of the character.
+ * @param {string} bottom_segment - The bottom segment of the character.
+ */
 export function set_character (key : string, top_segment : string, middle_segment : string, bottom_segment : string) {
 	characters.set(key, new Character(key, top_segment, middle_segment, bottom_segment));
 }
+
+/**
+ * Retrieves the character associated with the given key.
+ *
+ * @param {string} key - The key of the character to retrieve.
+ * @throws {E_FORBIDDEN_CHARACTER} If the key is not found in the characters map.
+ * @return {any} The character associated with the given key.
+ */
 export function get_character(key : string) {
 	if(!characters.has(key)){
 		throw E_FORBIDDEN_CHARACTER;
