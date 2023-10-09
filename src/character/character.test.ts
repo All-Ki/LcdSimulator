@@ -13,11 +13,11 @@ describe("character specification", () => {
 		
 		
 	})
-	test("Should error when characters are other than spaces, hyphens and underscores", () => {
+	test("Should error when characters are other than spaces, pipes and underscores", () => {
 		expect(() => set_character("a", "x  ", "   ", "   "))
 		.toThrow(E_BAD_SEGMENTS);
 	})
-	test("should accept when characters are spaces, hyphens and underscores", () => {
+	test("should accept when characters are spaces, pipes and underscores", () => {
 		expect(() => set_character("a", "   " ,"  |", " __")).not.toThrow();
 	
 	})
